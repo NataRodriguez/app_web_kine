@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="welcome-container">
+        <h2>Bienvenido</h2>
+        <p>¡Has iniciado sesión exitosamente!</p>
+        <div class="selector-container">
+            <label for="ageRangeSelector">Selecciona un rango de edad:</label>
+            <select id="ageRangeSelector"></select>
+        </div>
+        <div class="table-container">
+            <form id="examForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Examen</th>
+                            <th>Valor Mínimo</th>
+                            <th>Valor Máximo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="examTableBody">
+                    </tbody>
+                </table>
+                <button type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
