@@ -5,27 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Página de Exámenes</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="date"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="date"]::-webkit-clear-button {
+            display: none;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .row .column {
+            flex: 1;
+            min-width: 45%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Perfil</a></li>
+                <li><a href="pagina.html">Inicio</a></li>
+                <li><a href="pagina2.html">Perfil</a></li>
             </ul>
         </nav>
     </div>
     <div class="container">
         <h2>Registrar Examen del Paciente</h2>
-        <form id="patientForm">
-            <label for="patientName">Nombre del Paciente:</label>
-            <input type="text" id="patientName" name="patientName" required>
-            
-            <label for="examDate">Fecha del Examen:</label>
-            <input type="date" id="examDate" name="examDate" required>
-            
-            <label for="patientAge">Edad del Paciente:</label>
-            <input type="number" id="patientAge" name="patientAge" required>
+        <form>
+            <div class="form-group">
+                <label for="patientName">Nombre del Paciente:</label>
+                <input type="text" id="patientName" name="patientName" required>
+            </div>
+    
+            <div class="row form-group">
+                <div class="column">
+                    <label for="examDate">Fecha del Examen:</label>
+                    <input type="date" id="examDate" name="examDate" required>
+                </div>
+                <div class="column">
+                    <label for="patientAge">Edad del Paciente:</label>
+                    <input type="number" id="patientAge" name="patientAge" required>
+                </div>
+            </div>
+        </form>
             
             <table>
                 <thead>
@@ -39,9 +100,6 @@
                     <!-- Aquí se llenará la tabla con los exámenes -->
                 </tbody>
             </table>
-            
-            <button type="submit">Registrar</button>
-        </form>
     </div>
     <script src="js/script2.js"></script>
 </body>

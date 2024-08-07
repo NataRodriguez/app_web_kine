@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const statusCell = document.createElement('td');
             
             examNameCell.textContent = exam;
-            resultCell.innerHTML = `<input type="number" name="result${index}" data-exam="${exam}">`;
+            resultCell.innerHTML = `<input type="number" name="result${index}" data-exam="${exam}" value="0" disabled>`;
             statusCell.className = `status${index}`;
 
             row.appendChild(examNameCell);
@@ -40,6 +40,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Añadir evento para calcular el estado al ingresar los resultados
         examTableBody.addEventListener('input', calculateStatus);
+
+        // Añadir evento para habilitar los campos de entrada al ingresar la edad
+        ageRangeSelector.addEventListener('input', enableInputs);
+    }
+
+    // Función para habilitar los inputs al ingresar la edad
+    function enableInputs(event) {
+        const age = parseInt(event.target.value);
+        if (!isNaN(age)) {
+            const inputs = document.querySelectorAll('#examTableBody input');
+            inputs.forEach(input => {
+                input.disabled = false;
+            });
+        } else {
+            const inputs = document.querySelectorAll('#examTableBody input');
+            inputs.forEach(input => {
+                input.disabled = true;
+            });
+        }
     }
 
     // Función para calcular el estado del paciente
@@ -51,12 +70,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const rows = examTableBody.querySelectorAll('tr');
 
         let ageRange;
-        if (age >= 60 && age <= 64) {
-            ageRange = data.Hombre['60-64'];
-        } else if (age >= 65 && age <= 69) {
-            ageRange = data.Hombre['65-69'];
-        } // Añadir más rangos de edad según el JSON
-        
+        for (const range in data.Hombre) {
+            const [minAge, maxAge] = range.split('-').map(Number);
+            if (age >= minAge && age <= maxAge) {
+                ageRange = data.Hombre[range];
+                break;
+            }
+        }
+
         rows.forEach((row, index) => {
             const exam = row.querySelector('input').getAttribute('data-exam');
             const result = parseFloat(row.querySelector('input').value);
