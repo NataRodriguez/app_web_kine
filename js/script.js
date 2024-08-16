@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     let data = {};
+    let selectedGender = "Hombre"; // Valor por defecto
 
     // Función para cargar los datos del JSON
     function loadData() {
@@ -20,10 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Función para poblar el selector de rangos de edad y la tabla de exámenes
     function populateSelectorsAndTable() {
         const ageRangeSelector = document.getElementById('ageRangeSelector');
-        const examTableBody = document.getElementById('examTableBody');
 
-        const ageRanges = Object.keys(data.Hombre);
-        const firstAgeRange = data.Hombre[ageRanges[0]];
+        const ageRanges = Object.keys(data[selectedGender]);
+        const firstAgeRange = data[selectedGender][ageRanges[0]];
         const examNames = Object.keys(firstAgeRange);
 
         // Poblar el selector de rangos de edad
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Escuchar el cambio en el selector de rangos de edad
         ageRangeSelector.addEventListener('change', function() {
             const selectedRange = ageRangeSelector.value;
-            const selectedExams = data.Hombre[selectedRange];
+            const selectedExams = data[selectedGender][selectedRange];
             populateTable(Object.keys(selectedExams), selectedExams);
         });
     }
@@ -69,6 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Escuchar cambios en el selector de género
+    document.getElementById('gender').addEventListener('change', function() {
+        selectedGender = this.value;
+        populateSelectorsAndTable(); // Repoblar los selectores y la tabla con los nuevos datos
+    });
+
     // Función para manejar el envío del formulario
     document.getElementById('examForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -83,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const minValue = cells[1].querySelector('input').value;
             const maxValue = cells[2].querySelector('input').value;
 
-            data.Hombre[selectedRange][examName] = {
+            data[selectedGender][selectedRange][examName] = {
                 "min": minValue,
                 "max": maxValue
             };
