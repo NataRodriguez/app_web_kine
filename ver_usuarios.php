@@ -58,7 +58,9 @@ $conn->close();
                 <li><a href="pagina.html">Inicio</a></li>
                 <li><a href="pagina2.html">Pacientes</a></li>
                 <li><a href="registro.php">Registro</a></li>
-                <li><a href="ver_usuarios.php">Ver Usuarios</a></li>
+                <li><a href="ver_usuarios.php">Ver usuarios</a></li>
+                <li><a href="pagina-informe.php">Ver Informes</a></li>
+                <li><a href="cerrar.php">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </div>

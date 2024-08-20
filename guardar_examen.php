@@ -55,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         log_message("RUT no encontrado, insertando nuevo cliente");
 
-        $sql_cliente = "INSERT INTO cliente (rut, nombre, edad) VALUES (?, ?, ?)";
+        $sql_cliente = "INSERT INTO cliente (rut, nombre, edad, genero) VALUES (?, ?, ?, ?)";
         $stmt_cliente = $conn->prepare($sql_cliente);
-        $stmt_cliente->bind_param("ssi", $rut, $nombre, $edad);
+        $stmt_cliente->bind_param("ssis", $rut, $nombre, $edad, $gender);
         $stmt_cliente->execute();
 
         $cliente_id = $stmt_cliente->insert_id;
@@ -111,16 +111,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql_resultado = "INSERT INTO resultado_examen (examen_id, examen, fecha_carga, resultado, estado) VALUES (?, ?, ?, ?, ?)";
         $stmt_resultado = $conn->prepare($sql_resultado);
         $stmt_resultado->bind_param("issss", $examen_id, $examen, $fecha_carga, $resultado, $estado);
+        $response = array();
 
         if ($stmt_resultado->execute()) {
             log_message("Resultado del examen $examen insertado correctamente");
+            $response['status'] = 'ok';
         } else {
             log_message("Error al guardar el resultado del examen $examen: " . $stmt_resultado->error);
+            $response['status'] = 'fail';
         }
     }
 
     log_message("Proceso finalizado");
-    echo "Datos guardados exitosamente.";
+    echo json_encode($response);
 }
 
 $conn->close();

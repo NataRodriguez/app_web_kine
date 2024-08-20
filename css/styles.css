@@ -175,3 +175,53 @@ label {
     display: block;
     margin-bottom: 5px;
 }
+
+/* Estilos para el modal */
+#modalInforme {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalContent {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalContent table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#modalContent th, #modalContent td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#modalContent th {
+    background-color: #f2f2f2;
+    color: #000;
+}
+
+.closeModal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeModal:hover,
+.closeModal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

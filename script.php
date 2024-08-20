@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['usuario'] = $usuario;
         $_SESSION['tipo_usuario'] = $tipo_usuario; // Guardar tipo de usuario en la sesión
 
-        header("Location: https://kineintegra.com/cetvirtu/Aplicacion_web_Kineintegra/Login_registro/pagina.html");
+        header("Location: https://kineintegra.com/cetvirtu/Aplicacion_web_Kineintegra/Login_registro/pagina.php");
         exit();
     } else {
         // Usuario o contraseña incorrectos
